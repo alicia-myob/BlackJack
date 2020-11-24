@@ -12,7 +12,7 @@ namespace BlackJack_Kata
         
         public override string ToString()
         {
-            return "[" + _rank + ", " + _suit + " ]";
+            return "[" + _rank + ", " + _suit + "]";
         }
     }
     public enum Suit

@@ -7,6 +7,7 @@ namespace BlackJack_Kata
         static void Main(string[] args)
         {
             var deck = new Deck();
+            
         }
     }
 }
