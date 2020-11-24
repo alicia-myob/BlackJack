@@ -6,7 +6,7 @@ namespace BlackJack_Kata
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var deck = new Deck();
         }
     }
 }
