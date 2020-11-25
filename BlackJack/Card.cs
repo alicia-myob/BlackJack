@@ -21,6 +21,7 @@ namespace BlackJack_Kata
         {
             return ((rank >= Rank.Jack) && (rank <= Rank.King));
         }
+        
 
         public int Value(Card card)
         {
@@ -34,7 +35,7 @@ namespace BlackJack_Kata
             }
         }
 
-        private Rank GetRank()
+        public Rank GetRank()
         {
             return _rank;
         }

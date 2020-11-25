@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace BlackJack_Kata
@@ -15,10 +16,14 @@ namespace BlackJack_Kata
         {
             _hand.Add(card);
         }
+        
 
-        public void CalculateWorth()
+        public void ShowHand()
         {
-            
+            foreach (var card in _hand)
+            {
+                Console.WriteLine(card.ToString());
+            }
         }
     }
 }

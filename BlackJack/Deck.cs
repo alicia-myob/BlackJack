@@ -57,6 +57,11 @@ namespace BlackJack_Kata
             }
         }
 
+        public Card[] GetDeck()
+        {
+            return _deck;
+        }
+
         public IEnumerator<Card> GetEnumerator()
         {
             throw new NotImplementedException();

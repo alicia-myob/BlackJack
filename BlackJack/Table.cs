@@ -12,6 +12,7 @@ namespace BlackJack_Kata
             _currentDeck = currentDeck;
             _playerHand = new Hand();
             _dealerHand = new Hand();
+            DealInitialCards();
         }
 
         public void DealInitialCards()
@@ -24,7 +25,10 @@ namespace BlackJack_Kata
             _dealerHand.StoreCardInHand(_currentDeck.Dequeue());
             _dealerHand.StoreCardInHand(_currentDeck.Dequeue());
             
+            _playerHand.ShowHand();
+            _dealerHand.ShowHand();
         }
+        
         
         
     }

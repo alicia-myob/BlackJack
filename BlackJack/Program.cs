@@ -3,20 +3,23 @@ using System.Collections.Generic;
 
 namespace BlackJack_Kata
 {
-    internal static class Program
+    public class Program
     {
-        private static void Main(string[] args)
+        public static void Main(string[] args)
         {
+            
+            Console.WriteLine("Welcome to BlackJack!");
+            Program blackjackGame = new Program();
             var deck = new Deck();
             deck.Shuffle();
-            Console.WriteLine("Welcome to BlackJack!");
-            Program.StartGame(deck);
+            blackjackGame.StartGame(deck);
         }
 
-        private static void StartGame(Deck deck)
+        public void StartGame(Deck deck)
         {
             var gameDeck = new Queue<Card>();
-            foreach (var card in deck)
+            var currentDeck = deck.GetDeck();
+            foreach (var card in currentDeck)
             {
                 gameDeck.Enqueue(card);
             }
