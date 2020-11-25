@@ -19,7 +19,7 @@ namespace Tests
         public void GetOutOfRangeCard()
         {
             var deck = new Deck();
-            //Assert.ThrowsException<System.ArgumentOutOfRangeException>(() => deck.GetCard(52));
+            Assert.Throws<System.ArgumentOutOfRangeException>(() => deck.GetCard(52));
         }
         
         

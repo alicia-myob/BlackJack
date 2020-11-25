@@ -1,3 +1,5 @@
+using System;
+
 namespace BlackJack_Kata
 {
     public class Card
@@ -13,6 +15,11 @@ namespace BlackJack_Kata
         public override string ToString()
         {
             return "[" + _rank + ", " + _suit + "]";
+        }
+
+        public void getWorth()
+        {
+            
         }
     }
     public enum Suit
