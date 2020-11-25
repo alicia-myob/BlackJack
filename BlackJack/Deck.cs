@@ -1,8 +1,10 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace BlackJack_Kata
 {
-    public class Deck
+    public class Deck : IEnumerable<Card>
     {
         private readonly Card[] _deck;
         public Deck()
@@ -53,6 +55,16 @@ namespace BlackJack_Kata
             {
                 throw new ArgumentOutOfRangeException();
             }
+        }
+
+        public IEnumerator<Card> GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 }
