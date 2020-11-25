@@ -20,7 +20,9 @@ namespace BlackJack_Kata
             {
                 gameDeck.Enqueue(card);
             }
+            var newTable = new Table(gameDeck);
         }
         
     }
+    
 }

@@ -1,9 +1,11 @@
+using System.Collections.Generic;
+
 namespace BlackJack_Kata
 {
-    public class Dealer
+    public class DealerHand
     {
-        
-        public Dealer()
+        List<string> _hand = new List<string>();
+        public DealerHand()
         {
            
         }
