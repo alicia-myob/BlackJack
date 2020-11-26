@@ -6,6 +6,7 @@ namespace BlackJack_Kata
 {
     public class Dealer
     {
+        private const int InitialNoOfCards = 2;
         private Card[] _deck;
         private Queue<Card> _cardStack;
         public Dealer()
@@ -64,6 +65,11 @@ namespace BlackJack_Kata
             }
         }
 
+        public void StartGameWithPlayer(Player player)
+        {
+           DealCardToPlayer(player, InitialNoOfCards);
+           var playerScore = ValueCalculator.HandWorth(player.GetHand());
+        }
         public void DealCardToPlayer(Player player, int numOfDeals)
         {
             for (var i = 0; i < numOfDeals; i++)
