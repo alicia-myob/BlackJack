@@ -17,11 +17,6 @@ namespace BlackJack_Kata
             return "[" + _rank + ", " + _suit + "]";
         }
 
-        
-        
-
-        
-
         public Rank GetRank()
         {
             return _rank;
