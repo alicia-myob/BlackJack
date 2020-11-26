@@ -7,9 +7,17 @@ namespace BlackJack_Kata
     public class Dealer
     {
         private Card[] _deck;
+        private Queue<Card> _cardStack;
         public Dealer()
         {
             
+        }
+
+        public void prepareGame()
+        {
+            CreateDeck();
+            ShuffleDeck();
+            PrepareDeck(_deck);
         }
 
         public void CreateDeck()
@@ -49,10 +57,10 @@ namespace BlackJack_Kata
 
         public void PrepareDeck(Card[] deck)
         {
-            var gameDeck = new Queue<Card>();
+            _cardStack = new Queue<Card>();
             foreach (var card in deck)
             {
-                gameDeck.Enqueue(card);
+                _cardStack.Enqueue(card);
             }
         }
     }
