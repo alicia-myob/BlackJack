@@ -13,19 +13,19 @@ namespace BlackJack_Kata
             
         }
 
-        public void prepareGame()
+        public void PrepareGame()
         {
             CreateDeck();
             ShuffleDeck();
             PrepareDeck(_deck);
         }
 
-        public void CreateDeck()
+        private void CreateDeck()
         {
             _deck = new Card[52];
         }
-        
-        public void ShuffleDeck()
+
+        private void ShuffleDeck()
         {
             var shuffledDeck = new Card[52];
             var place = new Random();
@@ -55,12 +55,20 @@ namespace BlackJack_Kata
             shuffledDeck.CopyTo(_deck, 0);
         }
 
-        public void PrepareDeck(Card[] deck)
+        private void PrepareDeck(Card[] deck)
         {
             _cardStack = new Queue<Card>();
             foreach (var card in deck)
             {
                 _cardStack.Enqueue(card);
+            }
+        }
+
+        public void DealCardToPlayer(Player player, int numOfDeals)
+        {
+            for (var i = 0; i < numOfDeals; i++)
+            {
+                player.ReceiveCard(_cardStack.Dequeue());
             }
         }
     }
