@@ -17,23 +17,10 @@ namespace BlackJack_Kata
             return "[" + _rank + ", " + _suit + "]";
         }
 
-        private static bool IsPictureCard(Rank rank)
-        {
-            return ((rank >= Rank.Jack) && (rank <= Rank.King));
-        }
+        
         
 
-        public int Value(Card card)
-        {
-            if (IsPictureCard(card.GetRank()))
-            {
-                return 10;
-            }
-            else
-            {
-                return (int) (card.GetRank());
-            }
-        }
+        
 
         public Rank GetRank()
         {
