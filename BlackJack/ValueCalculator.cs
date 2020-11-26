@@ -4,17 +4,6 @@ namespace BlackJack_Kata
 {
     public static class ValueCalculator
     {
-        private static int CardWorth(Card card)
-        {
-            if (IsPictureCard(card.GetRank()))
-            {
-                return 10;
-            } 
-            else
-            {
-                return (int) (card.GetRank());
-            }
-        }
 
         public static int HandWorth(List<Card> hand)
         {
@@ -43,6 +32,18 @@ namespace BlackJack_Kata
             }
             
             return handWorth;
+        }
+        
+        private static int CardWorth(Card card)
+        {
+            if (IsPictureCard(card.GetRank()))
+            {
+                return 10;
+            } 
+            else
+            {
+                return (int) (card.GetRank());
+            }
         }
         
         //Changing ace value depending on current hand
