@@ -12,11 +12,10 @@ namespace BlackJack_Kata
             _worth = 0;
         }
 
-        public void StoreCardInHand(Card card)
+        public void AddCard(Card card)
         {
             _hand.Add(card);
         }
-        
 
         public void ShowHand()
         {
