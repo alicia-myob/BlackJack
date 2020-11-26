@@ -11,14 +11,14 @@ namespace BlackJack_Kata
             Console.WriteLine("Welcome to BlackJack!");
             Program blackjackGame = new Program();
             
-            blackjackGame.StartGame();
+            StartGame();
         }
 
-        public void StartGame()
+        private static void StartGame()
         { 
             var dealer = new Dealer();
             var player = new Player();
-            dealer.prepareGame();
+            dealer.PrepareGame();
         }
     }
     
