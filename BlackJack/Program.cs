@@ -18,6 +18,7 @@ namespace BlackJack_Kata
         { 
             var dealer = new Dealer();
             var player = new Player();
+            dealer.prepareGame();
         }
     }
     
