@@ -24,5 +24,10 @@ namespace BlackJack_Kata
                 Console.WriteLine(card.ToString());
             }
         }
+
+        public List<Card> GetHand()
+        {
+            return _hand;
+        }
     }
 }
