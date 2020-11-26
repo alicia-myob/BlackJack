@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace BlackJack_Kata
 {
     public class Player
@@ -12,6 +14,11 @@ namespace BlackJack_Kata
         public void ReceiveCard(Card card)
         {
             _playerHand.AddCard(card);
+        }
+
+        public List<Card> GetHand()
+        {
+            return _playerHand.GetHand();
         }
     }
 }
