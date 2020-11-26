@@ -4,7 +4,7 @@ namespace BlackJack_Kata
 {
     public static class ValueCalculator
     {
-        public static int CardWorth(Card card)
+        private static int CardWorth(Card card)
         {
             if (IsPictureCard(card.GetRank()))
             {
@@ -46,24 +46,15 @@ namespace BlackJack_Kata
         }
         
         //Changing ace value depending on current hand
-        public static int AceChange(int aceCount, int handWorthWithoutAceChange)
+        private static int AceChange(int aceCount, int handWorthWithoutAceChange)
         {
-            if (handWorthWithoutAceChange >= 21)
+            if (21 - handWorthWithoutAceChange >= 10) 
             {
-                return handWorthWithoutAceChange;
+                var handWorthWithAceChange = handWorthWithoutAceChange - 1 + 11;
+                return handWorthWithAceChange;
             }
-            else
-            {
-                if (21 - handWorthWithoutAceChange >= 10)
-                {
-                    var handWorthWithAceChange = handWorthWithoutAceChange - 1 + 11;
-                    return handWorthWithAceChange;
-                }
-                else
-                {
-                    return handWorthWithoutAceChange;
-                }
-            }
+            
+            return handWorthWithoutAceChange;
         }
 
         //Checking if picture card
