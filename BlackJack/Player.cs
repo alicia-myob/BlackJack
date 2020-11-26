@@ -8,5 +8,10 @@ namespace BlackJack_Kata
         {
             
         }
+
+        public void ReceiveCard(Card card)
+        {
+            _playerHand.AddCard(card);
+        }
     }
 }
