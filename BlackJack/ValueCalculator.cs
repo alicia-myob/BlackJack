@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace BlackJack_Kata
@@ -12,18 +13,22 @@ namespace BlackJack_Kata
             var aceCount = 0;
             
             //Work out the total worth in hand without changing ace values (ace default value is 1)
-            foreach (var card in hand)
+            try
             {
-                var value = ValueCalculator.CardWorth(card);
-                if (value == 1)
+                foreach (var card in hand)
                 {
-                    aceCount++;
+                    var value = ValueCalculator.CardWorth(card);
+                    if (value == 1)
+                    {
+                        aceCount++;
+                    }
+                    else
+                    {
+                        handWorthWithoutAceChange += value;
+                    }
                 }
-                else
-                {
-                    handWorthWithoutAceChange += value;
-                }
-            }
+            } catch (NullReferenceException){}
+            
             
             //If there is at least one ace, see if the worth of the ace(s) should change
             if (aceCount > 0)
