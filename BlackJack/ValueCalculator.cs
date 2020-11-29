@@ -33,10 +33,10 @@ namespace BlackJack_Kata
             //If there is at least one ace, see if the worth of the ace(s) should change
             if (aceCount > 0)
             {
-                handWorth = AceChange(aceCount, handWorthWithoutAceChange);
+                handWorthWithoutAceChange = AceChange(aceCount, handWorthWithoutAceChange);
             }
             
-            return handWorth;
+            return handWorthWithoutAceChange;
         }
         
         private static int CardWorth(Card card)
