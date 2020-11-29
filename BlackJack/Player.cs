@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace BlackJack_Kata
@@ -41,10 +42,7 @@ namespace BlackJack_Kata
             return _score == 21;
         }
 
-        public bool PlayerBusted()
-        {
-            return _score > 21;
-        }
+        
         
         
     }
