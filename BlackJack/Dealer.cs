@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using Xunit.Sdk;
 
 namespace BlackJack_Kata
@@ -10,6 +11,7 @@ namespace BlackJack_Kata
         private Card[] _deck;
         private Queue<Card> _cardStack;
         private Table _table;
+        private string _input; 
         public Dealer()
         {
             _table = new Table();
@@ -93,14 +95,42 @@ namespace BlackJack_Kata
         {
             while (player.PlayerScoreUnder21())
             {
-                
+                if (player.PlayerScoreIs21())
+                {
+                    break;
+                }
+
+                if (askHitOrStay() == 1)
+                {
+                    DealCardToPlayer(player, 1);
+                }
+                else
+                {
+                    
+                }
             }
         }
 
-        public void askHitOrStay()
+        private int askHitOrStay()
         {
-            Console.Write("Hit or stay? (Hit = 1, Stay = 0)");
-            var answer = Console.ReadLine();
+            var keepAsking = false;
+            while (!keepAsking)
+            {
+                Console.Write("Hit or stay? (Hit = 1, Stay = 0)");
+                _input = Console.ReadLine();
+                keepAsking = InputValidator.CheckHitStayInput(_input);
+                if (keepAsking)
+                {
+                    if (_input != null) return int.Parse(_input.Trim(), NumberStyles.AllowLeadingWhite| NumberStyles.AllowTrailingWhite);
+                }
+                else
+                {
+                    Console.WriteLine("Please check your input!");
+                }
+            }
+
+            return 0;
+            
         }
         
         
