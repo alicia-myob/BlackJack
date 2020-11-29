@@ -9,9 +9,10 @@ namespace BlackJack_Kata
         private const int InitialNoOfCards = 2;
         private Card[] _deck;
         private Queue<Card> _cardStack;
+        private Table _table;
         public Dealer()
         {
-            
+            _table = new Table();
         }
 
         public void PrepareGame()
@@ -76,6 +77,9 @@ namespace BlackJack_Kata
         {
            DealCardToPlayer(player, InitialNoOfCards);
            var playerScore = ValueCalculator.HandWorth(player.GetHand());
+           player.ReceiveScore(playerScore);
+           _table.announceScore(player);
+           
         }
         public void DealCardToPlayer(Player player, int numOfDeals)
         {
@@ -84,5 +88,21 @@ namespace BlackJack_Kata
                 player.ReceiveCard(_cardStack.Dequeue());
             }
         }
+
+        public void gamePlay(Player player)
+        {
+            while (player.PlayerScoreUnder21())
+            {
+                
+            }
+        }
+
+        public void askHitOrStay()
+        {
+            Console.Write("Hit or stay? (Hit = 1, Stay = 0)");
+            var answer = Console.ReadLine();
+        }
+        
+        
     }
 }
