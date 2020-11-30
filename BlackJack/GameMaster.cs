@@ -12,6 +12,8 @@ namespace BlackJack_Kata
         {
             CreateDeck();
             var dealer = new Dealer(_deck, new BasicShuffler(new BasicRandomGenerator()));
+            AssignDealerToTable(dealer);
+            var player = new Player();
         }
         
         private void CreateDeck()
@@ -26,9 +28,10 @@ namespace BlackJack_Kata
             }
         }
 
-        private void AssignDealerToTable(Dealer dealer)
+        private static void AssignDealerToTable(Dealer dealer)
         {
-            
+            var table = new Table();
+            dealer.SetTable(table);
         }
         
         
