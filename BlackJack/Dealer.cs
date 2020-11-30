@@ -9,53 +9,32 @@ namespace BlackJack_Kata
     {
         private const int InitialNoOfCards = 2;
         private Card[] _deck;
+        private BasicShuffler _shuffler;
         private Queue<Card> _cardStack;
         private Table _table;
         private string _input; 
         public Dealer(Card[] deck, IShuffler shuffler)
         {
-            
+            _deck = deck;
+            _shuffler = (BasicShuffler) shuffler;
+            ShuffleDeck();
+            PrepareDeck();
         }
 
-        private void SetTable()
+        public void SetTable(Table table)
         {
-            
+            _table = table;
         }
         
         private void ShuffleDeck()
         {
-            var shuffledDeck = new Card[52];
-            var place = new Random();
-            var cardExists = new bool[52];
-
-            for (var i = 0; i < 52; i++)
-            {
-                var cardPlace = 0;
-                var foundPlace = false;
-                while (!foundPlace)
-                {
-                    cardPlace = place.Next(52);
-                    if (!cardExists[cardPlace])
-                    {
-                        foundPlace = true;
-                    }
-                }
-
-                cardExists[cardPlace] = true;
-                try
-                {
-                    shuffledDeck[cardPlace] = _deck[i];
-                } catch (NullException){}
-                
-            }
-            
-            shuffledDeck.CopyTo(_deck, 0);
+           _deck = _shuffler.Shuffle(_deck);
         }
 
-        private void PrepareDeck(Card[] deck)
+        private void PrepareDeck()
         {
             _cardStack = new Queue<Card>();
-            foreach (var card in deck)
+            foreach (var card in _deck)
             {
                 _cardStack.Enqueue(card);
             }
