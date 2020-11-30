@@ -12,30 +12,16 @@ namespace BlackJack_Kata
         private Queue<Card> _cardStack;
         private Table _table;
         private string _input; 
-        public Dealer()
+        public Dealer(Card[] deck, IShuffler shuffler)
         {
-            _table = new Table();
+            
         }
 
-        public void PrepareGame()
+        private void SetTable()
         {
-            CreateDeck();
-            ShuffleDeck();
-            PrepareDeck(_deck);
+            
         }
-
-        private void CreateDeck()
-        {
-            _deck = new Card[52];
-            for (var suit = 0; suit < 4; suit++)
-            {
-                for (var rank = 1; rank < 14; rank++)
-                {
-                    _deck[suit*13 + rank - 1] = new Card((Suit) suit, (Rank)rank);
-                }
-            }
-        }
-
+        
         private void ShuffleDeck()
         {
             var shuffledDeck = new Card[52];
@@ -78,9 +64,7 @@ namespace BlackJack_Kata
         public void StartGameWithPlayer(Player player)
         {
            DealCardToPlayer(player, InitialNoOfCards);
-           var playerScore = ValueCalculator.HandWorth(player.GetHand());
-           player.ReceiveScore(playerScore);
-           _table.announceScore(player);
+           AnnounceToTable(player);
            
         }
         public void DealCardToPlayer(Player player, int numOfDeals)
@@ -91,7 +75,7 @@ namespace BlackJack_Kata
             }
         }
 
-        public void gamePlay(Player player)
+        public void GamePlay(Player player)
         {
             while (player.PlayerScoreUnder21())
             {
@@ -100,9 +84,10 @@ namespace BlackJack_Kata
                     break;
                 }
 
-                if (askHitOrStay() == 1)
+                if (AskHitOrStay() == 1)
                 {
                     DealCardToPlayer(player, 1);
+                    AnnounceToTable(player);
                 }
                 else
                 {
@@ -111,7 +96,7 @@ namespace BlackJack_Kata
             }
         }
 
-        private int askHitOrStay()
+        private int AskHitOrStay()
         {
             var keepAsking = false;
             while (!keepAsking)
@@ -131,6 +116,13 @@ namespace BlackJack_Kata
 
             return 0;
             
+        }
+
+        private void AnnounceToTable(Player player)
+        {
+            var playerScore = ValueCalculator.HandWorth(player.GetHand());
+            player.ReceiveScore(playerScore);
+            _table.AnnounceScore(player);
         }
         
         
