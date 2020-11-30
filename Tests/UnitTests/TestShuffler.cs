@@ -19,7 +19,7 @@ namespace Tests.UnitTests
         [Fact]
         public void ShufflerShouldShuffleCards()
         {
-            var mock = Mock<IRandomGenerator>();
+            
         }
 
         
