@@ -21,7 +21,7 @@ namespace BlackJack_Kata
             _playersAtTable.Add(player);
         }
 
-        public void announceScore(Player player)
+        public void AnnounceScore(Player player)
         {
             Console.WriteLine("\nYou are at currently at " + player.PassScore());
             Console.Write("with the hand [");
@@ -39,11 +39,18 @@ namespace BlackJack_Kata
             
         }
 
+        public void AnnounceDrawnCard(Player player)
+        {
+            Console.Write("You draw ");
+            var lastCard = player.GetHand().Last();
+            Console.WriteLine(lastCard.ToString());
+        }
+
         public void UpdateTable()
         {
             foreach (var player in _playersAtTable)
             {
-                announceScore(player);
+                AnnounceScore(player);
             }
         }
 
