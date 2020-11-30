@@ -16,7 +16,6 @@ namespace BlackJack_Kata
 
         private static void StartGame()
         {
-            var player = new Player();
             var gameMaster = new GameMaster();
         }
     }
