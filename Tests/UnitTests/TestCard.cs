@@ -21,7 +21,7 @@ namespace Tests.UnitTests
         }
 
         [Fact]
-        public void TestGetRank()
+        public void GetRank()
         {
             var card = new Card(Suit.Club, Rank.Ace);
             var cardRank = card.GetRank();
@@ -29,7 +29,7 @@ namespace Tests.UnitTests
         }
 
         [Fact]
-        public void TestSetAceToValueOne()
+        public void SetAceToValueOne()
         {
             var card = new Card(Suit.Diamond, Rank.Ace);
             var valueOfAce = (int) card.GetRank();
