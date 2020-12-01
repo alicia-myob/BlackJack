@@ -11,5 +11,11 @@ namespace BlackJack_Kata
             var rx = new Regex("^\\s*[01]\\s*$");
             return (rx.IsMatch(input));
         }
+
+        public static bool CheckYnInput(string input)
+        {
+            var rx = new Regex("^\\s*[ynYN]\\s*$");
+            return (rx.IsMatch(input)); 
+        }
     }
 }
