@@ -3,9 +3,19 @@ using System.Collections.Generic;
 
 namespace BlackJack_Kata
 {
+    /**
+     * <summary>Class <c>ValueCalculator</c> works out the value of cards in a players hand</summary>
+     * <remarks>This class handles the case of Ace which by default has a value of 1, but can be 11 if it
+     * best fits the player's advantage.</remarks>
+     */
     public static class ValueCalculator
     {
 
+        /**
+         * <summary>This method takes in a players hand, calculate the worth of the hand and returns it.</summary>
+         * <param name="hand">List of cards representing the players hand</param>
+         * <returns>An integer value representing the worth</returns>
+         */
         public static int HandWorth(List<Card> hand)
         {
             var handWorthWithoutAceChange = 0;
@@ -39,6 +49,10 @@ namespace BlackJack_Kata
             return handWorthWithoutAceChange;
         }
         
+        /**
+         * <summary>This method takes into account that if the card is Jack, Queen or King,
+         * the value is 10</summary>
+         */
         private static int CardWorth(Card card)
         {
             if (IsPictureCard(card.GetRank()))
@@ -67,11 +81,6 @@ namespace BlackJack_Kata
         private static bool IsPictureCard(Rank rank)
         {
             return ((rank >= Rank.Jack) && (rank <= Rank.King));
-        }
-
-        private static bool IsAce(Rank rank)
-        {
-            return rank >= Rank.Ace;
         }
     }
 }
