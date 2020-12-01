@@ -5,8 +5,8 @@ namespace BlackJack_Kata
 {
     public class Player
     {
-        private Hand _playerHand = new Hand();
-        private int _score = 0;
+        protected Hand _playerHand = new Hand();
+        protected int _score = 0;
         public Player()
         {}
 
@@ -20,7 +20,7 @@ namespace BlackJack_Kata
             _score = playerScore;
         }
         
-        public int PassScore()
+        public int GetScore()
         {
             return _score;
         }
