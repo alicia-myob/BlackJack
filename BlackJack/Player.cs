@@ -8,9 +8,7 @@ namespace BlackJack_Kata
         private Hand _playerHand = new Hand();
         private int _score = 0;
         public Player()
-        {
-            
-        }
+        {}
 
         public void ReceiveCard(Card card)
         {
