@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BlackJack_Kata
 {
     public class Hand
     {
-        private List<Card> _hand = new List<Card>();
+        private readonly List<Card> _hand = new List<Card>();
         
         public Hand()
         {}
@@ -15,11 +16,18 @@ namespace BlackJack_Kata
             _hand.Add(card);
         }
 
-        public void ShowHand()
+        public static void ShowHand(Player player)
         {
-            foreach (var card in _hand)
+            foreach (var card in player.GetHand())
             {
-                Console.WriteLine(card.ToString());
+                if (card.Equals(player.GetHand().Last()))
+                {
+                    Console.Write(card.ToString() + "]\n");
+                }
+                else
+                {
+                    Console.Write(card.ToString() + ", ");
+                }
             }
         }
 
