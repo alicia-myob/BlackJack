@@ -81,7 +81,8 @@ namespace BlackJack_Kata
             {
                 DealerPlaysWithBotDealer(dealer, bot, player);
             }
-
+            
+            Program.ResetGame();
         }
 
         private void DealerPlaysWithBotDealer(Dealer dealer, BotPlayer bot, Player player)
@@ -99,7 +100,11 @@ namespace BlackJack_Kata
                 table.AnnounceDrawnCard(bot, false);
             }
 
-            if (!bot.PlayerScoreUnder21())
+            if (bot.PlayerScoreIs21())
+            {
+                table.DealerWins();
+            }
+            else if (!bot.PlayerScoreUnder21())
             {
                 table.DealerBusted();
                 table.Congratulations();
@@ -117,7 +122,7 @@ namespace BlackJack_Kata
             if (bot.GetScore() > player.GetScore())
             {
                 
-                table.DealerHasBlackJack();
+                table.DealerWins();
             } else if (bot.GetScore() == player.GetScore())
             {
                 table.AnnounceTie();
