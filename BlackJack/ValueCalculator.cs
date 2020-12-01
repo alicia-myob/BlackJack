@@ -8,7 +8,6 @@ namespace BlackJack_Kata
 
         public static int HandWorth(List<Card> hand)
         {
-            var handWorth = 0;
             var handWorthWithoutAceChange = 0;
             var aceCount = 0;
             
@@ -21,6 +20,7 @@ namespace BlackJack_Kata
                     if (value == 1)
                     {
                         aceCount++;
+                        handWorthWithoutAceChange += value;
                     }
                     else
                     {
