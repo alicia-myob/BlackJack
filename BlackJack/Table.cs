@@ -6,7 +6,7 @@ namespace BlackJack_Kata
 {
     public class Table
     {
-        private List<Player> _playersAtTable = new List<Player>();
+        private readonly List<Player> _playersAtTable = new List<Player>();
         private List<Card> _playerCards;
         private List<Card> _dealerCards;
         
@@ -21,9 +21,17 @@ namespace BlackJack_Kata
             _playersAtTable.Add(player);
         }
 
-        public void AnnounceScore(Player player)
+        public void AnnounceScore(Player player, bool isPlayer)
         {
-            Console.WriteLine("\nYou are at currently at " + player.PassScore());
+            if (isPlayer)
+            {
+                Console.WriteLine("\nYou are at currently at " + player.GetScore());
+            }
+            else
+            {
+                Console.WriteLine("\nDealer is at: " + player.GetScore());
+            }
+            
             Console.Write("with the hand [");
             foreach (var card in player.GetHand())
             {
@@ -36,12 +44,19 @@ namespace BlackJack_Kata
                     Console.Write(card.ToString() + ", ");
                 }
             }
-            
         }
 
-        public void AnnounceDrawnCard(Player player)
+        public void AnnounceDrawnCard(Player player, bool isPlayer)
         {
-            Console.Write("You draw ");
+            if (isPlayer)
+            {
+                Console.Write("You draw ");
+            }
+            else
+            {
+                Console.Write("Dealer draws ");
+            }
+           
             var lastCard = player.GetHand().Last();
             Console.WriteLine(lastCard.ToString());
         }
@@ -50,28 +65,37 @@ namespace BlackJack_Kata
         {
             foreach (var player in _playersAtTable)
             {
-                AnnounceScore(player);
+                AnnounceScore(player, true);
             }
         }
 
         public void Congratulations()
         {
-            Console.WriteLine("That's BlackJack! Congratulations :D");
+            Console.WriteLine("\nYou beat the dealer!");
+        }
+        public void CongratulationsBlackJack()
+        {
+            Console.WriteLine("\nThat's BlackJack! Congratulations :D");
         }
 
         public void Busted()
         {
-            Console.WriteLine("Busted! Take risks but don't be greedy ;)");
+            Console.WriteLine("\nBusted! Take risks but don't be greedy ;)");
+        }
+
+        public void DealerHasBlackJack()
+        {
+            Console.WriteLine("\nDealer wins :( ");
         }
         
+        public void DealerBusted()
+        {
+            Console.WriteLine("\nDealer busted! You win :) ");
+        }
 
-        
-        
-        
-
-        
-        
-        
-        
+        public void AnnounceTie()
+        {
+            Console.WriteLine("\nIt's a tie!");
+        }
     }
 }
