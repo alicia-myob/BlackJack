@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace BlackJack_Kata
 {
+    /**
+     * <summary>Class <c>Program</c> initiates and starts the game when required, and is able to reset the game</summary>
+     */
     public static class Program
     {
         public static void Main(string[] args)

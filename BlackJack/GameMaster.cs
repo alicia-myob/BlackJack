@@ -2,6 +2,10 @@ using System;
 
 namespace BlackJack_Kata
 {
+    /**<summary>Class <c>GameMaster</c> controls the flow of the game</summary>
+     * <para>GameMaster prepares game, instructs how the player plays, and then instructs how
+     * the bot dealer plays the game.</para>
+     */
     public class GameMaster
     {
         private Card[] _deck;
@@ -11,6 +15,9 @@ namespace BlackJack_Kata
             PrepareGame();
         }
 
+        /**<summary>Method PrepareGame creates an ordered deck, a dealer, a player, a bot player and instructs
+         * the dealer to deal cards to the player</summary>
+         */
         private void PrepareGame()
         {
             CreateDeck();
@@ -23,6 +30,9 @@ namespace BlackJack_Kata
             GamePlay(dealer,player, bot);
         }
         
+        /**
+         * <summary>Creating a standard deck of 52 playing cards, not shuffled</summary>
+         */
         private void CreateDeck()
         {
             _deck = new Card[52];
@@ -35,20 +45,29 @@ namespace BlackJack_Kata
             }
         }
 
+        /**
+         * Creates a table for the dealer and assigns it to them
+         */
         private static void AssignDealerToTable(Dealer dealer)
         {
             var table = new Table();
             dealer.SetTable(table);
         }
 
+        /**
+         * <summary>GamePlay is the main flow of the game. It instructs what the dealer should do and
+         * calls utility classes InputValidator and ValueCalculator to check at points in the game</summary>
+         */
         private void GamePlay(Dealer dealer, Player player, BotPlayer bot)
         {
             var table = dealer.GetTable();
+            
+            //While player has not won or busted
             while (player.PlayerScoreUnder21())
             {
-                var playerScore = ValueCalculator.HandWorth(player.GetHand());
+                var playerScore = ValueCalculator.HandWorth(player.GetHand()); //Get the player's current score
                 player.ReceiveScore(playerScore);
-                table.AnnounceScore(player, true);
+                table.AnnounceScore(player, true); //Print to console
                 
                 if (player.PlayerScoreIs21())
                 {
@@ -58,7 +77,7 @@ namespace BlackJack_Kata
                 if (player.PlayerScoreUnder21())
                 {
                     var hitOrStay = dealer.AskHitOrStay();
-                    if (hitOrStay == 1)
+                    if (hitOrStay == 1) // Hit = 1
                     {
                         dealer.DealCardToPlayer(player, 1);
                         table.AnnounceDrawnCard(player, true);
@@ -79,20 +98,25 @@ namespace BlackJack_Kata
             }
             else
             {
+                //If player chose to stay, then bot player must face the player
                 DealerPlaysWithBotDealer(dealer, bot, player);
             }
-            
+            //Ask to reset the game at the end
             Program.ResetGame();
         }
 
+        /**
+         * <summary>Method DealerPlaysWithBotDealer uses the decision maker feature in BotPlayer to
+         * control how the play goes. At the end, it compares the scores and declares a winner</summary>
+         */
         private void DealerPlaysWithBotDealer(Dealer dealer, BotPlayer bot, Player player)
         {
-            var table = dealer.GetTable();
+            var table = dealer.GetTable(); //Play at the same table as the player
             var playerScore = ValueCalculator.HandWorth(bot.GetHand());
             bot.ReceiveScore(playerScore);
             table.AnnounceScore(bot, false);
 
-            while (bot.DecisionMaker())
+            while (bot.DecisionMaker()) //While the bot is still under 17 
             {
                 dealer.DealCardToPlayer(bot, 1);
                 playerScore = ValueCalculator.HandWorth(bot.GetHand());
@@ -113,9 +137,12 @@ namespace BlackJack_Kata
             {
                 CompareScores(bot, player);
             }
-            
         }
 
+        /**
+         * <summary>CompareScores compares the scores between the bot and the player
+         * and declares a winner</summary>
+         */
         private static void CompareScores(Player bot, Player player)
         {
             var table = new Table();
@@ -126,9 +153,8 @@ namespace BlackJack_Kata
             } else if (bot.GetScore() == player.GetScore())
             {
                 table.AnnounceTie();
+
             }
-                
         }
-        
     }
 }
