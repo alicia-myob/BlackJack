@@ -54,6 +54,17 @@ namespace BlackJack_Kata
             }
         }
 
+        public void Congratulations()
+        {
+            Console.WriteLine("That's BlackJack! Congratulations :D");
+        }
+
+        public void Busted()
+        {
+            Console.WriteLine("Busted! Take risks but don't be greedy ;)");
+        }
+        
+
         
         
         
