@@ -50,11 +50,11 @@ namespace BlackJack_Kata
         {
             if (isPlayer)
             {
-                Console.Write("You draw ");
+                Console.Write("\nYou draw ");
             }
             else
             {
-                Console.Write("Dealer draws ");
+                Console.Write("\nDealer draws ");
             }
            
             var lastCard = player.GetHand().Last();
@@ -83,7 +83,7 @@ namespace BlackJack_Kata
             Console.WriteLine("\nBusted! Take risks but don't be greedy ;)");
         }
 
-        public void DealerHasBlackJack()
+        public void DealerWins()
         {
             Console.WriteLine("\nDealer wins :( ");
         }
