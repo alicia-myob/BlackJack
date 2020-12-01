@@ -1,3 +1,5 @@
+using System;
+
 namespace BlackJack_Kata
 {
     public class GameMaster
@@ -16,7 +18,9 @@ namespace BlackJack_Kata
             AssignDealerToTable(dealer);
             var player = new Player();
             dealer.DealCardToPlayer(player, InitialNoOfCards);
-            GamePlay(dealer,player);
+            var bot = new BotPlayer();
+            dealer.DealCardToPlayer(bot, InitialNoOfCards);
+            GamePlay(dealer,player, bot);
         }
         
         private void CreateDeck()
@@ -37,44 +41,88 @@ namespace BlackJack_Kata
             dealer.SetTable(table);
         }
 
-        private static void GamePlay(Dealer dealer, Player player)
+        private void GamePlay(Dealer dealer, Player player, BotPlayer bot)
         {
             var table = dealer.GetTable();
             while (player.PlayerScoreUnder21())
             {
                 var playerScore = ValueCalculator.HandWorth(player.GetHand());
                 player.ReceiveScore(playerScore);
-                table.AnnounceScore(player);
+                table.AnnounceScore(player, true);
                 
                 if (player.PlayerScoreIs21())
                 {
                     break;
                 }
 
-                var hitOrStay = dealer.AskHitOrStay();
-                if (hitOrStay == 1)
+                if (player.PlayerScoreUnder21())
                 {
-                    dealer.DealCardToPlayer(player, 1);
-                    table.AnnounceDrawnCard(player);
-                }
-                else
-                {
-                    break;
+                    var hitOrStay = dealer.AskHitOrStay();
+                    if (hitOrStay == 1)
+                    {
+                        dealer.DealCardToPlayer(player, 1);
+                        table.AnnounceDrawnCard(player, true);
+                    }
+                    else
+                    {
+                        break;
+                    } 
                 }
             }
 
             if (player.PlayerScoreIs21())
             {
-                table.Congratulations();
+                table.CongratulationsBlackJack();
             } else if (!player.PlayerScoreUnder21())
             {
                 table.Busted();
             }
             else
             {
-                
+                DealerPlaysWithBotDealer(dealer, bot, player);
             }
 
+        }
+
+        private void DealerPlaysWithBotDealer(Dealer dealer, BotPlayer bot, Player player)
+        {
+            var table = dealer.GetTable();
+            var playerScore = ValueCalculator.HandWorth(bot.GetHand());
+            bot.ReceiveScore(playerScore);
+            table.AnnounceScore(bot, false);
+
+            while (bot.DecisionMaker())
+            {
+                dealer.DealCardToPlayer(bot, 1);
+                playerScore = ValueCalculator.HandWorth(bot.GetHand());
+                bot.ReceiveScore(playerScore);
+                table.AnnounceDrawnCard(bot, false);
+            }
+
+            if (!bot.PlayerScoreUnder21())
+            {
+                table.DealerBusted();
+                table.Congratulations();
+            }
+            else
+            {
+                CompareScores(bot, player);
+            }
+            
+        }
+
+        private static void CompareScores(Player bot, Player player)
+        {
+            var table = new Table();
+            if (bot.GetScore() > player.GetScore())
+            {
+                
+                table.DealerHasBlackJack();
+            } else if (bot.GetScore() == player.GetScore())
+            {
+                table.AnnounceTie();
+            }
+                
         }
         
     }
