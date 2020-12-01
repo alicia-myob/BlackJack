@@ -12,31 +12,15 @@ namespace BlackJack_Kata
         }
         public Card[] Shuffle(Card[] deck)
         {
-            var shuffledDeck = new Card[52];
-            var cardExists = new bool[52];
-
-            for (var i = 0; i < 52; i++)
+            for (var n = deck.Length - 1; n > 0; --n)
             {
-                var cardPlace = 0;
-                var foundPlace = false;
-                while (!foundPlace)
-                {
-                    cardPlace = _generator.Generate(52);
-                    if (!cardExists[cardPlace])
-                    {
-                        foundPlace = true;
-                    }
-                }
-
-                cardExists[cardPlace] = true;
-                try
-                {
-                    shuffledDeck[cardPlace] = deck[i];
-                } catch (NullException){}
-                
+                var rand = _generator.Generate(n + 1);
+                var temp = deck[n];
+                deck[n] = deck[rand];
+                deck[rand] = temp;
             }
 
-            return shuffledDeck;
+            return deck;
         }
     }
 }

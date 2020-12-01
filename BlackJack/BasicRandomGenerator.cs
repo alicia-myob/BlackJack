@@ -7,7 +7,7 @@ namespace BlackJack_Kata
         private Random _random = new Random();
         public int Generate(int max)
         {
-            return _random.Next(max);
+            return _random.Next(0,max);
         }
     }
 }
