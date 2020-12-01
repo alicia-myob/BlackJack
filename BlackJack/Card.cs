@@ -21,7 +21,11 @@ namespace BlackJack_Kata
         {
             return _rank;
         }
-        
+
+        public Suit GetSuit()
+        {
+            return _suit; 
+        }
     }
     public enum Suit
     {
