@@ -60,7 +60,7 @@ namespace BlackJack_Kata
             {
                 var playerScore = ValueCalculator.HandWorth(player.GetHand()); //Get the player's current score
                 player.ReceiveScore(playerScore);
-                table.AnnounceScore(player, true); //Print to console
+                Table.AnnounceScore(player, true); //Print to console
                 
                 if (player.PlayerScoreIs21())
                 {
@@ -107,7 +107,7 @@ namespace BlackJack_Kata
             var table = dealer.GetTable(); //Play at the same table as the player
             var playerScore = ValueCalculator.HandWorth(bot.GetHand());
             bot.ReceiveScore(playerScore);
-            table.AnnounceScore(bot, false);
+            Table.AnnounceScore(bot, false);
 
             while (bot.DecisionMaker()) //While the bot is still under 17 
             {
