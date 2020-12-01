@@ -51,7 +51,7 @@ namespace BlackJack_Kata
         {
             var playerScore = ValueCalculator.HandWorth(player.GetHand());
             player.ReceiveScore(playerScore);
-            _table.AnnounceScore(player, true);
+            Table.AnnounceScore(player, true);
         }
 
         public int AskHitOrStay()
