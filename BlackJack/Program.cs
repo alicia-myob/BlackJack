@@ -3,14 +3,12 @@ using System.Collections.Generic;
 
 namespace BlackJack_Kata
 {
-    public class Program
+    public static class Program
     {
         public static void Main(string[] args)
         {
             
             Console.WriteLine("Welcome to BlackJack!");
-            var blackjackGame = new Program();
-            
             StartGame();
         }
 
@@ -18,6 +16,23 @@ namespace BlackJack_Kata
         {
             var gameMaster = new GameMaster();
         }
+
+        public static void ResetGame()
+        {
+            Console.Write("Would you like to reset your game? (y/n): ");
+            string input = Console.ReadLine();
+            if (InputValidator.CheckYnInput(input))
+            {
+                
+                Console.WriteLine("\nNEW GAME");
+                StartGame();
+            }
+            else
+            {
+                Console.WriteLine("\nThanks for playing BlackJack!");
+            }
+        }
+        
     }
     
 }
