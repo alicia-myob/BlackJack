@@ -4,9 +4,17 @@ using System.Collections.Generic;
 
 namespace BlackJack_Kata
 {
+    /**
+     * <summary>Class <c>Deck</c> represents a standard deck of 52 playing cards. It is a card
+     * array made up of Card objects</summary>
+     */
     public class Deck 
     {
         private readonly Card[] _deck;
+        
+        /**
+         * <summary>This constructor creates a deck and stores it in a readonly field</summary>
+         */
         public Deck()
         {
             _deck = new Card[52];

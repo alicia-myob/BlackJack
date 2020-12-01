@@ -4,24 +4,26 @@ using System.Linq;
 
 namespace BlackJack_Kata
 {
+    /**
+     * <summary>Class <c>Table</c> represents a BlackJack table which a dealer is assigned to and players can sit
+     * at it. It is also for announcing scores and results</summary>
+     */
     public class Table
     {
         private readonly List<Player> _playersAtTable = new List<Player>();
-        private List<Card> _playerCards;
-        private List<Card> _dealerCards;
-        
+
         public Table()
-        {
-           _playerCards = new List<Card>();
-           _dealerCards = new List<Card>();
-        }
+        {}
 
         public void AddPlayerToTable(Player player)
         {
             _playersAtTable.Add(player);
         }
 
-        public void AnnounceScore(Player player, bool isPlayer)
+        /**
+         * <summary>This method announces the score of the player's hand and the </summary>
+         */
+        public static void AnnounceScore(Player player, bool isPlayer)
         {
             if (isPlayer)
             {
@@ -33,17 +35,7 @@ namespace BlackJack_Kata
             }
             
             Console.Write("with the hand [");
-            foreach (var card in player.GetHand())
-            {
-                if (card.Equals(player.GetHand().Last()))
-                {
-                    Console.Write(card.ToString() + "]\n");
-                }
-                else
-                {
-                    Console.Write(card.ToString() + ", ");
-                }
-            }
+            Hand.ShowHand(player);
         }
 
         public void AnnounceDrawnCard(Player player, bool isPlayer)
@@ -56,9 +48,8 @@ namespace BlackJack_Kata
             {
                 Console.Write("\nDealer draws ");
             }
-           
-            var lastCard = player.GetHand().Last();
-            Console.WriteLine(lastCard.ToString());
+            
+            Console.WriteLine(player.GetHand().Last().ToString());
         }
 
         public void UpdateTable()
@@ -69,6 +60,8 @@ namespace BlackJack_Kata
             }
         }
 
+        //Result messages
+        
         public void Congratulations()
         {
             Console.WriteLine("\nYou beat the dealer!");

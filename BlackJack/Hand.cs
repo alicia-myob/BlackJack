@@ -16,6 +16,10 @@ namespace BlackJack_Kata
             _hand.Add(card);
         }
 
+        /**
+         * <summary>This method prints out a player's hand in the required format</summary>
+         * <example>[[Five, Diamond], [Four, Heart]]</example>
+         */
         public static void ShowHand(Player player)
         {
             foreach (var card in player.GetHand())
