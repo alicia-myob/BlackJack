@@ -3,6 +3,9 @@ using Xunit.Sdk;
 
 namespace BlackJack_Kata
 {
+    /**
+     * <summary>This class uses the Fisher-Yates shuffle algorithm</summary>
+     */
     public class BasicShuffler: IShuffler
     {
         private IRandomGenerator _generator;
