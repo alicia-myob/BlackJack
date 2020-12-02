@@ -29,6 +29,14 @@ namespace Tests.UnitTests
         }
 
         [Fact]
+        public void GetSuit()
+        {
+            var card = new Card(Suit.Club, Rank.Ace);
+            var cardSuit = card.GetSuit();
+            Assert.Equal(Suit.Club, cardSuit);
+        }
+        
+        [Fact]
         public void SetAceToValueOne()
         {
             var card = new Card(Suit.Diamond, Rank.Ace);
