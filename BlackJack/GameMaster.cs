@@ -148,6 +148,10 @@ namespace BlackJack_Kata
                 table.AnnounceTie();
 
             }
+            else
+            {
+                table.Congratulations();
+            }
         }
     }
 }
