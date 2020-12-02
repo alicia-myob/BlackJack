@@ -53,7 +53,7 @@ namespace BlackJack_Kata
          * <summary>This method takes into account that if the card is Jack, Queen or King,
          * the value is 10</summary>
          */
-        private static int CardWorth(Card card)
+        public static int CardWorth(Card card)
         {
             if (IsPictureCard(card.GetRank()))
             {
@@ -66,7 +66,7 @@ namespace BlackJack_Kata
         }
         
         //Changing ace value depending on current hand
-        private static int AceChange(int aceCount, int handWorthWithoutAceChange)
+        public static int AceChange(int aceCount, int handWorthWithoutAceChange)
         {
             if (21 - handWorthWithoutAceChange >= 10) 
             {
