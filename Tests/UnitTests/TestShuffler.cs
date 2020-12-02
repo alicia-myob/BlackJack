@@ -31,7 +31,7 @@ namespace Tests.UnitTests
             var shuffledDeck2 = shuffler.Shuffle(deck2);
             AssertingEqualityOnDecks(shuffledDeck1, shuffledDeck2);
         }
-
+        
         private void AssertingEqualityOnDecks(Card[] deck1, Card[] deck2)
         {
             Assert.NotNull(deck1);  
@@ -42,9 +42,6 @@ namespace Tests.UnitTests
                 Assert.Equal(deck1[i].GetRank(), deck2[i].GetRank());
                 Assert.Equal(deck1[i].GetSuit(), deck2[i].GetSuit());
             }
-            
-            
-                      
         }
 
         private Card[] CreateDeck()
