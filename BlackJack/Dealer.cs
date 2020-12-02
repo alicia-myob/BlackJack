@@ -5,6 +5,10 @@ using Xunit.Sdk;
 
 namespace BlackJack_Kata
 {
+    /**
+     * <summary>Class <c>Dealer</c> represents a person who shuffles and hands out cards. They can
+     * also ask the player whether they want another card or not</summary>
+     */
     public class Dealer
     {
         private Card[] _deck;
@@ -20,6 +24,8 @@ namespace BlackJack_Kata
             PrepareDeck();
         }
 
+        //Assigning the dealer a table so that players can go to the same table if they want
+        //the same dealer
         public void SetTable(Table table)
         {
             _table = table;
@@ -45,13 +51,6 @@ namespace BlackJack_Kata
             {
                 player.ReceiveCard(_cardStack.Dequeue());
             }
-        }
-        
-        private void AnnounceScore(Player player)
-        {
-            var playerScore = ValueCalculator.HandWorth(player.GetHand());
-            player.ReceiveScore(playerScore);
-            Table.AnnounceScore(player, true);
         }
 
         public int AskHitOrStay()
