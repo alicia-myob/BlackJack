@@ -3,10 +3,13 @@ using System.Collections.Generic;
 
 namespace BlackJack_Kata
 {
+    /**
+     * <summary>Class <c>Player</c> represents a player in the game. They can receive cards and have scores</summary>
+     */
     public class Player
     {
-        protected Hand _playerHand = new Hand();
-        protected int _score = 0;
+        private readonly Hand _playerHand = new Hand();
+        protected int Score = 0;
         public Player()
         {}
 
@@ -17,12 +20,12 @@ namespace BlackJack_Kata
         
         public void ReceiveScore(int playerScore)
         {
-            _score = playerScore;
+            Score = playerScore;
         }
         
         public int GetScore()
         {
-            return _score;
+            return Score;
         }
 
         public List<Card> GetHand()
@@ -32,16 +35,12 @@ namespace BlackJack_Kata
 
         public bool PlayerScoreUnder21()
         {
-            return _score < 21;
+            return Score < 21;
         }
 
         public bool PlayerScoreIs21()
         {
-            return _score == 21;
+            return Score == 21;
         }
-
-        
-        
-        
     }
 }
