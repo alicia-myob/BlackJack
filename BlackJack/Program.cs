@@ -22,18 +22,31 @@ namespace BlackJack_Kata
 
         public static void ResetGame()
         {
-            Console.Write("Would you like to reset your game? (y/n): ");
-            string input = Console.ReadLine();
-            if (InputValidator.CheckYnInput(input))
+            var hasReplied = false;
+            while (!hasReplied)
             {
-                
-                Console.WriteLine("\nNEW GAME");
-                StartGame();
+                Console.Write("Would you like to reset your game? (y/n): ");
+                var input = Console.ReadLine();
+                if (InputValidator.CheckYnInput(input))
+                {
+                    hasReplied = true;
+                    if (input != null && input.Trim().Equals("y", StringComparison.OrdinalIgnoreCase))
+                    {
+                        Console.WriteLine("\nNEW GAME");
+                        StartGame();
+                    }
+                    else
+                    {
+                        Console.WriteLine("\nThanks for playing BlackJack!");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Please check your input!");
+                }
             }
-            else
-            {
-                Console.WriteLine("\nThanks for playing BlackJack!");
-            }
+            
+            
         }
         
     }
