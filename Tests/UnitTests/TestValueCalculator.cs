@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using BlackJack_Kata;
 using Xunit;
 
@@ -56,7 +57,26 @@ namespace Tests.UnitTests
             var handWorthAfterAceChange = ValueCalculator.AceChange(2, 2);
             Assert.Equal(12,handWorthAfterAceChange);
         }
+
+        [Fact]
+        public void Test_HandWorth_Calculator_With_Empty_Hand()
+        {
+            var hand = new List<Card> { };
+            Assert.Equal(0, ValueCalculator.HandWorth(hand));
+        }
         
+        [Fact]
+        public void Test_HandWorth_Calculator_With_Hand_No_Ace_Change()
+        {
+            var hand = new List<Card> {new Card(Suit.Club, Rank.Eight), new Card(Suit.Diamond, Rank.Seven)};
+            Assert.Equal(15, ValueCalculator.HandWorth(hand));
+        }
         
+        [Fact]
+        public void Test_HandWorth_Calculator_With_Hand_And_Ace_Change()
+        {
+            var hand = new List<Card> {new Card(Suit.Club, Rank.Eight), new Card(Suit.Diamond, Rank.Ace)};
+            Assert.Equal(19, ValueCalculator.HandWorth(hand));
+        }
     }
 }
